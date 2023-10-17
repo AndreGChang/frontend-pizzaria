@@ -1,0 +1,59 @@
+<p>pessoasdetails works!</p>
+<form (ngSubmit)="salvar()">
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Nome:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="usuario.nome">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Telefone:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="usuario.telefone">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">CPF</label>
+    <input type="text" class="form-control" name="exampleCPF1" [(ngModel)]="usuario.cpf">
+  </div>
+
+  <!-- criar componenet modal de enderecos lista -->
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+endereco:
+<button class="btn btn-primary" (click)="adicionarEndereco(modal1)">Adicionar</button>
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">Rua</th>
+          <th scope="col">NumCasa</th>
+          <th scope="col">Acoes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let endereco of usuario.enderecos; let i = index">
+          <th scope="row">{{ endereco.id }}</th>
+          <td> {{ endereco.rua }} </td>
+          <td> {{ endereco.numCasa }} </td>
+
+          <td>
+            <button class="btn btn-primary" (click)="editarEndereco(modal1, endereco, i)">Editar</button>
+            <button class="btn btn-danger" (click)="deletar(endereco, i)">Deletar</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <!--  <app-pessoaslista [modoLancamento]="true" ></app-pessoaslista> -->
+      <app-enderecosdetails [endereco]="enderecoSelecionadoParaEdicao"  (retorno)="retornoEndereco($event)"></app-enderecosdetails>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

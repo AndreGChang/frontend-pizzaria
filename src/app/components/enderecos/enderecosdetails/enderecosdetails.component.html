@@ -1,0 +1,20 @@
+<p>enderecosdetails works!</p>
+<form (ngSubmit)="salvar()">
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Rua:</label>
+    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+      [(ngModel)]="endereco.rua">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">NumCasa:</label>
+    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="endereco.numCasa">
+  </div>
+  <!-- <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">CPF</label>
+    <input type="text" class="form-control" name="exampleCPF1" [(ngModel)]="usuario.cpf">
+  </div> -->
+
+
+  <!-- criar componenet modal de enderecos lista -->
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
