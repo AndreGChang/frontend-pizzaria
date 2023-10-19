@@ -4,6 +4,7 @@ export class Item {
 
   id!: number;
   tamanho!: string;
-  entrega!: boolean;
+  nome!: string;
   sabores!: Sabores[];
+  possuiSabores!: boolean;
 }

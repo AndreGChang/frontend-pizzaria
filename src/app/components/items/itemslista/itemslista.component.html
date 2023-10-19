@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="alert alert-primary">Listagem de pessoas!</h3>
+  <h3 class="alert alert-primary">Listagem de itens!</h3>
   <div class="input-group mb-3">
     <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
     <input type="text" class="form-control" aria-label="Sizing example input"
@@ -13,23 +13,26 @@
         <thead>
           <tr>
             <th scope="col">#ID</th>
+            <th scope="col">tamanho</th>
             <th scope="col">Nome</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Acoes</th>
+            <th scope="col" class="colspan-2">Acoes</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let usuario of listaFiltrada; let i = index">
-            <th scope="row">{{ usuario.id }}</th>
-            <td> {{ usuario.nome }} </td>
-            <td> {{ usuario.telefone }} </td>
-            <td> {{ usuario.cpf }} </td>
+          <tr *ngFor="let item of listaFiltrada; let i = index">
+            <th scope="row">{{ item.id }}</th>
+            <td> {{ item.tamanho }} </td>
+            <td> {{ item.nome }} </td>
+
+            <!-- <td> {{ usuario.cpf }} </td> -->
+
+
             <td *ngIf="!modoLancamento">
-              <button class="btn btn-primary" (click)="editar(modal1, usuario, i)">Editar</button>
-              <button class="btn btn-danger" (click)="deletar(usuario)">Deletar</button>
+              <button type="button" class="btn btn-primary" (click)="editar(modal1, item, i)">Editar</button>
+              <button type="button" class="btn btn-danger" (click)="deletar(item)">Deletar</button>
             </td>
-            <td *ngIf="modoLancamento"> <button class="btn btn-primary" (click)="lancamentoUsuario(usuario)">Lançar</button> </td>
+            <td *ngIf="modoLancamento"><button type="button" class="btn btn-primary" (click)="lancamento(item)">Lancar</button></td>
+            <!-- <td *ngIf="modoLancamento"> <button class="btn btn-primary" (click)="editar(modal1, usuario, i)">Lançar</button> </td> -->
           </tr>
         </tbody>
       </table>
@@ -46,8 +49,7 @@
   </div>
   <div class="modal-body">
 
-    <app-pessoasdetails [usuario]="usuarioSelecionadoParaEdicao"
-      (retorno)="addOuEditarPessoa($event)"></app-pessoasdetails>
+    <app-itemsdetails [item]="itemSelecionadoParaEdicao" (retorno)="addOuEditarPessoa($event)"></app-itemsdetails>
 
   </div>
   <div class="modal-footer">

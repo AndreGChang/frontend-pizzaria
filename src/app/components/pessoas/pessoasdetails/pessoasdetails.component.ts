@@ -23,18 +23,6 @@ export class PessoasdetailsComponent {
   indiciSelecionadoParaEdicao!: number;
 
 
-
-  // salvar() {
-  //   this.usuarioService.save(this.usuario).subscribe({
-  //     next: usuario =>{
-  //       this.retorno.emit(usuario);
-  //     },
-  //     error: erro =>{
-  //       console.log(erro);
-  //     }
-  //   });
-  // }
-
   salvar() {
     this.usuarioService.verify(this.usuario).subscribe({
       next: usuario => {
@@ -46,7 +34,6 @@ export class PessoasdetailsComponent {
       }
     });
   }
-
 
 
   adicionarEndereco(modal: any) {

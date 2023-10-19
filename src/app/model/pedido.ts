@@ -5,6 +5,7 @@ export class Pedido {
   id!: number;
   nome!: string;
   observacao!: string;
+  entrega!: boolean;
   item!: Item[];
   usuario!: Usuario;
 }

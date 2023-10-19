@@ -14,12 +14,14 @@
     <input type="text" class="form-control" name="exampleCPF1" [(ngModel)]="usuario.cpf">
   </div>
 
-  <!-- criar componenet modal de enderecos lista -->
-  <button type="submit" class="btn btn-primary">Salvar</button>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
 </form>
 
-endereco:
-<button class="btn btn-primary" (click)="adicionarEndereco(modal1)">Adicionar</button>
+<button class="btn btn-warning"   (click)="adicionarEndereco(modal1)">Adicionar Endereco</button>
+
+
 <table class="table table-striped">
   <thead>
       <tr>
@@ -50,7 +52,6 @@ endereco:
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <!--  <app-pessoaslista [modoLancamento]="true" ></app-pessoaslista> -->
       <app-enderecosdetails [endereco]="enderecoSelecionadoParaEdicao"  (retorno)="retornoEndereco($event)"></app-enderecosdetails>
   </div>
   <div class="modal-footer">

@@ -14,6 +14,11 @@ import { PessoasdetailsComponent } from './components/pessoas/pessoasdetails/pes
 import { HttpClientModule } from '@angular/common/http';
 import { EnderecosdetailsComponent } from './components/enderecos/enderecosdetails/enderecosdetails.component';
 import { PedidoslistaComponent } from './components/pedidos/pedidoslista/pedidoslista.component';
+import { PedidosdetailsComponent } from './components/pedidos/pedidosdetails/pedidosdetails.component';
+import { ItemslistaComponent } from './components/items/itemslista/itemslista.component';
+import { ItemsdetailsComponent } from './components/items/itemsdetails/itemsdetails.component';
+import { SaboreslistaComponent } from './components/sabores/saboreslista/saboreslista.component';
+import { SaboresdetailsComponent } from './components/sabores/saboresdetails/saboresdetails.component';
 
 
 @NgModule({
@@ -25,7 +30,12 @@ import { PedidoslistaComponent } from './components/pedidos/pedidoslista/pedidos
     PessoaslistaComponent,
     PessoasdetailsComponent,
     EnderecosdetailsComponent,
-    PedidoslistaComponent
+    PedidoslistaComponent,
+    PedidosdetailsComponent,
+    ItemslistaComponent,
+    ItemsdetailsComponent,
+    SaboreslistaComponent,
+    SaboresdetailsComponent
 
 
 

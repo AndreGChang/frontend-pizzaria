@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,12 +11,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class PessoaslistaComponent {
 
   @Input() modoLancamento = false;
+  @Output() usuarioRetorno = new EventEmitter<Usuario>();
 
   lista: Usuario[] = [];
   listaFiltrada: Usuario[] = [];
 
   usuarioSelecionadoParaEdicao: Usuario = new Usuario();
-  indiciSelecionadoParaEdicao!: number;
+  indiceSelecionadoParaEdicao!: number;
 
   modalService = inject(NgbModal);
   usuarioService = inject(UsuarioService);
@@ -47,7 +48,7 @@ export class PessoaslistaComponent {
 
   editar(modal:any, usuario: Usuario, indice: number) {
     this.usuarioSelecionadoParaEdicao = Object.assign({}, usuario);
-    this.indiciSelecionadoParaEdicao = indice;
+    this.indiceSelecionadoParaEdicao = indice;
     this.modalService.open(modal, {size:"md"});
   }
 
@@ -76,6 +77,10 @@ export class PessoaslistaComponent {
     }else{
       this.listaFiltrada = this.lista;
     }
+  }
+
+  lancamentoUsuario(usuario : Usuario){
+    this.usuarioRetorno.emit(usuario);
   }
 
 }

@@ -17,22 +17,22 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.API);
   }
 
-  edit(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.API}/editar/${usuario.id}`, usuario)
-      .pipe(
-        catchError(error => {
-          console.error("Error", error);
-          throw error;
-        })
-      );
-  }
+  // edit(usuario: Usuario): Observable<Usuario> {
+  //   return this.http.put<Usuario>(`${this.API}/editar/${usuario.id}`, usuario)
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error("Error", error);
+  //         throw error;
+  //       })
+  //     );
+  // }
 
-  save(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.API, usuario);
-  }
+  // save(usuario: Usuario): Observable<Usuario> {
+  //   return this.http.post<Usuario>(this.API, usuario);
+  // }
 
-  deletar(id: number): Observable<string> {
-    return this.http.delete<string>(`${this.API}/deletar/${id}`);
+  deletar(id: number): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.API}/deletar/${id}`);
   }
 
   // verify(usuario: Usuario) {
