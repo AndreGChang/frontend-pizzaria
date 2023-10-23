@@ -15,6 +15,7 @@
             <th scope="col">#ID</th>
             <th scope="col">tamanho</th>
             <th scope="col">Nome</th>
+            <th scope="col">Valor</th>
             <th scope="col" class="colspan-2">Acoes</th>
           </tr>
         </thead>
@@ -23,9 +24,7 @@
             <th scope="row">{{ item.id }}</th>
             <td> {{ item.tamanho }} </td>
             <td> {{ item.nome }} </td>
-
-            <!-- <td> {{ usuario.cpf }} </td> -->
-
+            <td> {{ item.valor }} </td>
 
             <td *ngIf="!modoLancamento">
               <button type="button" class="btn btn-primary" (click)="editar(modal1, item, i)">Editar</button>

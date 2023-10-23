@@ -14,9 +14,9 @@ import { Item } from 'src/app/model/item';
 export class PedidosdetailsComponent {
 
 
-  @Input() pedido: Pedido =  new Pedido();
+  @Input() pedido: Pedido = new Pedido();
   @Output() retorno = new EventEmitter<Pedido>();
-
+  @Input() modo: boolean = false;
 
   pedidoService = inject(PedidoService);
   modalService = inject(NgbModal);
@@ -25,7 +25,7 @@ export class PedidosdetailsComponent {
   pedidoSelecionadoParaEdicao: Pedido = new Pedido();
   indiceSelecionadoParaEdicao!: number;;
 
-  constructor(){
+  constructor() {
 
   }
 
@@ -44,7 +44,7 @@ export class PedidosdetailsComponent {
   adicionarEndereco(modal: any) {
     // this.pedidoSelecionadoParaEdicao = new Pedido();
     // this.indiceSelecionadoParaEdicao = -1;
-   this.modalRef = this.modalService.open(modal, { size: 'lg' });
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
   editarEndereco(modal: any, pedido: Pedido, indice: number) {
@@ -53,36 +53,48 @@ export class PedidosdetailsComponent {
     this.modalRef = this.modalService.open(modal, { size: "lg" });
   }
 
-  deletar(item: Item, i:number) {
-    this.pedido.item.splice(i,1);
+  deletar(item: Item, i: number) {
+    this.pedido.item.splice(i, 1);
   }
 
 
-  retornoUsuarioSelecionado(usuario : Usuario){
+  retornoUsuarioSelecionado(usuario: Usuario) {
     this.pedido.usuario = usuario;
   }
 
-  retornoItemLista(item : Item){
-    if(this.pedido.item == null){
-        this.pedido.item = [];
+  retornoItemLista(item: Item) {
+    if (this.pedido.item == null) {
+      this.pedido.item = [];
     }
 
     this.pedido.item.push(item);
     this.modalRef.dismiss();
   }
 
-  lancarUsuario(modal: any){
-    this.modalRef = this.modalService.open(modal, {size: "lg"});
+  lancarUsuario(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: "lg" });
   }
 
-  receberUsuario(usuario : Usuario){
+  receberUsuario(usuario: Usuario) {
     this.pedido.usuario = usuario;
     this.modalRef.dismiss();
   }
 
 
-  lancar(modal: any){
-    this.modalRef = this.modalService.open(modal, {size: "lg"});
+  lancar(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: "lg" });
   }
+
+  verItens(modal: any) {
+    this.modalRef = this.modalService.open(modal, { size: "lg" })
+  }
+
+  opcoesSelect(item1: any, item2: any){
+    if(item1 != null && item2 != null)
+      return item1.id === item2.id
+    else
+      return item1 === item2;
+  }
+
 
 }

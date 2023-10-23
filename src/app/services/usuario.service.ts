@@ -45,6 +45,8 @@ export class UsuarioService {
 
   verify(usuario: Usuario): Observable<Usuario> {
     if (usuario.id) {
+      console.log("a")
+      console.log(usuario)
     return this.http.put<Usuario>(`${this.API}/editar/${usuario.id}`, usuario)
         .pipe(
           catchError(error => {
@@ -53,6 +55,8 @@ export class UsuarioService {
           })
         );
     } else {
+      console.log("b")
+      console.log(usuario)
       return this.http.post<Usuario>(this.API, usuario);
     }
 

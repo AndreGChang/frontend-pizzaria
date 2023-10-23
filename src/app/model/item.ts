@@ -7,4 +7,5 @@ export class Item {
   nome!: string;
   sabores!: Sabores[];
   possuiSabores!: boolean;
+  valor!: number;
 }

@@ -19,6 +19,7 @@ export class ItemslistaComponent {
 
   @Output() retorno = new EventEmitter<Item>();
   @Input() modoLancamento: boolean = false;
+  @Input() modo!: boolean;
 
   modalService = inject(NgbModal);
   itemService = inject(ItemService);

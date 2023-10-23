@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/model/item';
+import { Pedido } from 'src/app/model/pedido';
 import { Sabores } from 'src/app/model/sabores';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -13,7 +14,7 @@ export class ItemsdetailsComponent{
 
   @Input() item: Item = new Item();
   @Output() retorno = new EventEmitter<Item>();
-
+  @Input() modo!: boolean;
 
   itemService = inject(ItemService);
   modalService = inject(NgbModal);
@@ -31,6 +32,7 @@ export class ItemsdetailsComponent{
     this.itemService.verify(this.item).subscribe({
       next: item =>{
         this.retorno.emit(item);
+        console.log(item);
       }
     })
   }

@@ -8,25 +8,33 @@
 
   <div class="mb-3">
     <label for="exampleInputText1" class="form-label">Nome:</label>
-    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
+    <input type="text" class="form-control" *ngIf="modo != true" name="exampleInputNome1" aria-describedby="emailHelp"
       [(ngModel)]="pedido.nome">
+    <input type="text" class="form-control" *ngIf="modo == true" disabled name="exampleInputNome1"
+      aria-describedby="emailHelp" [(ngModel)]="pedido.nome">
   </div>
   <div class="mb-3">
     <div class="form-floating ">
-      <textarea class="form-control" placeholder="Leave a comment here" [(ngModel)]="pedido.observacao"
-        name="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Observacao</label>
+      <textarea class="form-control" *ngIf="modo == false" placeholder="Leave a comment here"
+        [(ngModel)]="pedido.observacao" name="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2" *ngIf="modo == false">Observacao</label>
+
+      <textarea class="form-control" *ngIf="modo == true" disabled placeholder="Leave a comment here"
+        [(ngModel)]="pedido.observacao" name="floatingTextareaDisabled" style="height: 100px"></textarea>
+      <label for="floatingTextareaDisabled" *ngIf="modo == true" disabled>Observacao</label>
     </div>
   </div>
   <div class="mb-3">
-    <select [(ngModel)]="pedido.entrega" class="form-select" aria-label="Default select example" name="select1">
+    <select [compareWith]="opcoesSelect" [(ngModel)]="pedido.entrega" class="form-select"
+      aria-label="Default select example" name="select1">
       <option [ngValue]="undefined">Selecione uma Opção</option>
       <option [ngValue]="true">Entregar</option>
       <option [ngValue]="false">Balcao</option>
     </select>
   </div>
 
-  <button type="button" class="btn btn-primary" (click)="lancar(modal1)">Lançar produto</button>
+  <button type="button" class="btn btn-primary" *ngIf="modo == false" (click)="lancar(modal1)">Lançar item</button>
+  <button type="button" class="btn btn-primary" *ngIf="modo == true" (click)="verItens(modal3)">Ver item</button>
 
   <table class="table table-striped">
     <thead>
@@ -34,7 +42,6 @@
         <th scope="col">#ID</th>
         <th scope="col">tamanho</th>
         <th scope="col">Nome</th>
-
         <th scope="col">Acoes</th>
       </tr>
     </thead>
@@ -44,7 +51,9 @@
         <td> {{ item.tamanho }} </td>
         <td> {{ item.nome }} </td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="deletar(item,i)">Deletar</button>
+          <button type="button" class="btn btn-danger" *ngIf="modo == false" (click)="deletar(item,i)">Deletar</button>
+          <button type="button" class="btn btn-danger" *ngIf="modo == true" disabled
+            (click)="deletar(item,i)">Deletar</button>
         </td>
       </tr>
     </tbody>
@@ -62,7 +71,7 @@
   </div>
   <div class="modal-body">
 
-    <app-itemslista [modoLancamento]="true" (retorno)="retornoItemLista($event)"></app-itemslista>
+    <app-itemslista [modoLancamento]="true" [modo]="true" (retorno)="retornoItemLista($event)"></app-itemslista>
 
   </div>
   <div class="modal-footer">
@@ -78,6 +87,21 @@
   <div class="modal-body">
 
     <app-pessoaslista [modoLancamento]="true" (usuarioRetorno)="receberUsuario($event)"></app-pessoaslista>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #modal3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal 3</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <app-itemsdetails [modo]="true"></app-itemsdetails>
 
   </div>
   <div class="modal-footer">

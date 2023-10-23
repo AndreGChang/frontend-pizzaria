@@ -52,6 +52,10 @@ export class PedidoslistaComponent {
     this.modalService.open(modal, {size:"lg"});
   }
 
+  verMais(modal : any, pedido: Pedido){
+    this.pedidoSelecionadoParaEdicao = Object.assign({}, pedido);
+    this.modalService.open(modal, {size:"lg"});
+  }
 
   deletar(pedido: Pedido){
     this.pedidoService.deletar(pedido.id).subscribe(
@@ -78,5 +82,6 @@ export class PedidoslistaComponent {
       this.listaFiltrada = this.lista;
     }
   }
+
 
 }

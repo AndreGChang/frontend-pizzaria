@@ -35,10 +35,14 @@
           <div class="card">
             <img src="https://images.unsplash.com/photo-1697450300645-faf3676bb7b5?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{pedido.nome}}</h5>
+              <h5 class="card-title" *ngIf="pedido.usuario?.nome != null">{{pedido.usuario?.nome}}</h5>
+              <h5 class="card-title" *ngIf="pedido.usuario?.nome == null">Sem nome</h5>
+              <h5 class="card-title" *ngIf="pedido.valorTotal != null">R$:{{pedido.valorTotal}}</h5>
+              <h5 class="card-title" *ngIf="pedido.valorTotal == null">R$:----</h5>
               <p class="card-text">{{pedido.observacao}}</p>
               <button *ngIf="!modoLancamento" class="btn btn-primary" (click)="editar(modal1, pedido, i)">Editar</button>
               <button *ngIf="!modoLancamento" class="btn btn-danger" (click)="deletar(pedido)">Deletar</button>
+              <button *ngIf="!modoLancamento" class="btn btn-secondary" (click)="verMais(modal2, pedido)">Ver mais</button>
             </div>
           </div>
 
@@ -65,3 +69,19 @@
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>
+
+<ng-template #modal2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <app-pedidosdetails [pedido]="pedidoSelecionadoParaEdicao" [modo]="true"></app-pedidosdetails>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
