@@ -8,5 +8,5 @@ export class Pedido {
   entrega!: boolean;
   item!: Item[];
   usuario!: Usuario;
-  valorTotal!: number
+  valorTotal!: number;
 }

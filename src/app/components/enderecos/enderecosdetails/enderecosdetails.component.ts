@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Endereco } from 'src/app/model/endereco';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -15,20 +16,16 @@ export class EnderecosdetailsComponent {
 
   enderecoService = inject(EnderecoService);
 
+  constructor(private toastSvc: ToastrService){
 
+  }
   salvar(){
-
     this.retorno.emit(this.endereco);
-
-    // this.enderecoService.verify(this.endereco).subscribe({
-    //   next: endereco =>{
-    //     this.retorno.emit(endereco);
-    //   },
-    //   error: erro =>{
-    //     alert("Errro, olhar no console");
-    //     console.log(erro);
-    //   }
-    // });
+    this.toastSvc.success(`Endereço salvo`,"PizzariaTOP",{
+      closeButton:true,
+      progressBar: true,
+      tapToDismiss:true
+    });
 
   }
 

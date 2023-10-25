@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { OutletContext } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/model/item';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -24,6 +24,7 @@ export class ItemslistaComponent {
   modalService = inject(NgbModal);
   itemService = inject(ItemService);
   termoBusca:string = "";
+  modalRef!: NgbModalRef;
 
   constructor(){
     this.listAll();
@@ -45,14 +46,15 @@ export class ItemslistaComponent {
 
   adicionar(modal: any) {
     this.itemSelecionadoParaEdicao = new Item();
-    this.modalService.open(modal, { size: 'md' });
+    this.modalRef = this.modalService.open(modal, { size: 'md' });
+
   }
 
 
   editar(modal:any, item: Item, indice: number) {
     this.itemSelecionadoParaEdicao = Object.assign({}, item);
     this.indiceSelecionadoParaEdicao = indice;
-    this.modalService.open(modal, {size:"md"});
+    this.modalRef =  this.modalService.open(modal, {size:"md"});
   }
 
   deletar(item: Item){
@@ -67,9 +69,8 @@ export class ItemslistaComponent {
   }
 
   addOuEditarPessoa(item: Item) {
-    alert("Item cadastrado com sucesso");
     this.listAll();
-    this.modalService.dismissAll();
+    this.modalRef.dismiss();
   }
 
   filtrar() {

@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Pedido } from 'src/app/model/pedido';
 import { PedidoService } from 'src/app/services/pedido.service';
@@ -8,23 +8,28 @@ import { PedidoService } from 'src/app/services/pedido.service';
   templateUrl: './pedidoslista.component.html',
   styleUrls: ['./pedidoslista.component.scss']
 })
-export class PedidoslistaComponent {
+export class PedidoslistaComponent implements OnInit{
 
   @Input() modoLancamento = false;
 
   lista: Pedido[] = [];
   listaFiltrada: Pedido[] = [];
 
+  valor!: number;
   pedidoSelecionadoParaEdicao: Pedido = new Pedido();
   indiceSelecionadoParaEdicao!: number;
+
 
   modalService = inject(NgbModal);
   pedidoService = inject(PedidoService);
   termoBusca: string = "";
 
-
   constructor(){
     this.listAll();
+  }
+
+  ngOnInit(): void {
+
   }
 
   listAll() {

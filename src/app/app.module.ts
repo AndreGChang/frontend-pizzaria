@@ -1,8 +1,6 @@
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -19,6 +17,12 @@ import { ItemslistaComponent } from './components/items/itemslista/itemslista.co
 import { ItemsdetailsComponent } from './components/items/itemsdetails/itemsdetails.component';
 import { SaboreslistaComponent } from './components/sabores/saboreslista/saboreslista.component';
 import { SaboresdetailsComponent } from './components/sabores/saboresdetails/saboresdetails.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,9 +39,7 @@ import { SaboresdetailsComponent } from './components/sabores/saboresdetails/sab
     ItemslistaComponent,
     ItemsdetailsComponent,
     SaboreslistaComponent,
-    SaboresdetailsComponent
-
-
+    SaboresdetailsComponent,
 
   ],
   imports: [
@@ -45,7 +47,17 @@ import { SaboresdetailsComponent } from './components/sabores/saboresdetails/sab
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

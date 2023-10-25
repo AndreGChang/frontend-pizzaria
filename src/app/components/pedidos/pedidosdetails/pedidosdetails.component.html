@@ -1,6 +1,10 @@
 <p>pedidosdetails works!</p>
-<form (ngSubmit)="salvar()">
 
+
+<form (ngSubmit)="salvar()">
+  <div>
+    {{pedido.valorTotal}}
+  </div>
 
   <h2 *ngIf="pedido.usuario == null">Nenhum usuário associado</h2>
   <h2 *ngIf="pedido.usuario != null">Usuário: {{pedido.usuario.nome}}</h2>
@@ -25,7 +29,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <select [compareWith]="opcoesSelect" [(ngModel)]="pedido.entrega" class="form-select"
+    <select [(ngModel)]="pedido.entrega" class="form-select"
       aria-label="Default select example" name="select1">
       <option [ngValue]="undefined">Selecione uma Opção</option>
       <option [ngValue]="true">Entregar</option>
@@ -34,7 +38,6 @@
   </div>
 
   <button type="button" class="btn btn-primary" *ngIf="modo == false" (click)="lancar(modal1)">Lançar item</button>
-  <button type="button" class="btn btn-primary" *ngIf="modo == true" (click)="verItens(modal3)">Ver item</button>
 
   <table class="table table-striped">
     <thead>
@@ -54,10 +57,12 @@
           <button type="button" class="btn btn-danger" *ngIf="modo == false" (click)="deletar(item,i)">Deletar</button>
           <button type="button" class="btn btn-danger" *ngIf="modo == true" disabled
             (click)="deletar(item,i)">Deletar</button>
+            <button type="button" class="btn btn-primary" *ngIf="modo == true" (click)="verItens(modal3)">Ver item</button>
         </td>
       </tr>
     </tbody>
   </table>
+
 
   <!-- criar componenet modal de enderecos lista -->
   <button type="submit" class="btn btn-primary">Salvar</button>
@@ -101,7 +106,7 @@
   </div>
   <div class="modal-body">
 
-    <app-itemsdetails [modo]="true"></app-itemsdetails>
+    <app-itemsdetails [modo]="true" [item]="itemSelecionadoParaEdicao"></app-itemsdetails>
 
   </div>
   <div class="modal-footer">

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Sabores } from 'src/app/model/sabores';
 import { SaborService } from 'src/app/services/sabor.service';
 
@@ -20,11 +21,28 @@ export class SaboresdetailsComponent {
   saborSelecionadoParaEdicao: Sabores = new Sabores();
   indiceSelecionadoParaEdicao!: number;
 
+  constructor(private toastSvc: ToastrService){
+
+  }
+
 
   salvar(){
     this.saborService.verify(this.sabor).subscribe({
       next: item =>{
         this.retorno.emit(item);
+        this.toastSvc.success(`${item.nome} salvo com sucesso`, "PizzariaTOP", {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true
+        });
+      },
+      error: erro => {
+        this.toastSvc.error(`${erro}`, "PizzariaTOP", {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true
+        });
+        console.log(erro);
       }
     })
   }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/model/item';
 import { Pedido } from 'src/app/model/pedido';
 import { Sabores } from 'src/app/model/sabores';
@@ -20,11 +21,11 @@ export class ItemsdetailsComponent{
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
 
+  options: string[] = ['Pequena', 'Media', 'Grande'];
   itemSelecionadoParaEdicao: Item = new Item();
   indiciSelecionadoParaEdicao!: number;
 
-
-  constructor(){
+  constructor(private toastSvc: ToastrService){
     this.item.possuiSabores = false;
   }
 
@@ -32,7 +33,19 @@ export class ItemsdetailsComponent{
     this.itemService.verify(this.item).subscribe({
       next: item =>{
         this.retorno.emit(item);
-        console.log(item);
+        this.toastSvc.success(`${this.item.nome} salvo com sucesso`,"PizzariaTOP",{
+          closeButton:true,
+          progressBar: true,
+          tapToDismiss:true
+        });
+      },
+      error: erro => {
+        this.toastSvc.error(`${erro}`,"PizzariaTOP",{
+          closeButton:true,
+          progressBar: true,
+          tapToDismiss:true
+        });
+        console.log(erro);
       }
     })
   }
@@ -42,6 +55,11 @@ export class ItemsdetailsComponent{
   }
 
   deletar(sabor : Sabores, i:number) {
+    this.toastSvc.warning(`item deletado`,"PizzariaTOP",{
+      closeButton:true,
+      progressBar: true,
+      tapToDismiss:true
+    });
     this.item.sabores.splice(i,1);
   }
 

@@ -6,14 +6,22 @@
     <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
       [(ngModel)]="item.nome">
   </div>
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Tamanho::</label>
     <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="item.tamanho">
     <input type="text" *ngIf="modo == false" class="form-control" name="exampleInputTelefone1" [(ngModel)]="item.tamanho">
+  </div> -->
+  <div class="mb-3">
+    <select [(ngModel)]="item.tamanho" class="form-select" aria-label="Default select example" name="select1">
+      <option [ngValue]="undefined">Selecione uma Opção</option>
+      <option *ngFor="let option of options" [value]="option">
+        {{ option }}
+    </select>
   </div>
   <div class="input-group input-group-sm mb-3">
     <span class="input-group-text" id="inputGroup-sizing-sm">Valor</span>
-    <input type="number" class="form-control" name="valorInput1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="item.valor">
+    <input type="number" class="form-control" name="valorInput1" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm" [(ngModel)]="item.valor">
   </div>
 
   <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
