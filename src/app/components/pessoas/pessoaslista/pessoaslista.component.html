@@ -1,7 +1,7 @@
 <div class="container">
   <h3 class="alert alert-primary">Listagem de pessoas!</h3>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+    <span class="input-group-text" id="inputGroup-sizing-default">Buscar por nome</span>
     <input type="text" class="form-control" aria-label="Sizing example input"
       aria-describedby="inputGroup-sizing-default" [(ngModel)]="termoBusca" (ngModelChange)="filtrar()">
 
@@ -41,13 +41,12 @@
 
 <ng-template #modal1 let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Pessoas details</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
 
-    <app-pessoasdetails [usuario]="usuarioSelecionadoParaEdicao"
-      (retorno)="addOuEditarPessoa($event)"></app-pessoasdetails>
+    <app-pessoasdetails [usuario]="usuarioSelecionadoParaEdicao" (retorno)="addOuEditarPessoa($event)"></app-pessoasdetails>
 
   </div>
   <div class="modal-footer">

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -23,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrModule } from 'ngx-toastr';
+import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 
 
 @NgModule({
@@ -40,6 +42,9 @@ import { ToastrModule } from 'ngx-toastr';
     ItemsdetailsComponent,
     SaboreslistaComponent,
     SaboresdetailsComponent,
+    FinalizarComponent,
+    FooterComponent,
+
 
   ],
   imports: [
@@ -54,7 +59,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     MatFormFieldModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
 
 
 

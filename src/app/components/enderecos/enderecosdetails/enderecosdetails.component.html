@@ -1,20 +1,25 @@
-<p>enderecosdetails works!</p>
-<form (ngSubmit)="salvar()">
+
+<form (ngSubmit)="salvar()" [formGroup]="form">
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">CEP:</label>
+    <input type="text" class="form-control" formControlName="cep" placeholder="CEP" name="exampleInputTelefone1" [(ngModel)]="endereco.cep">
+  </div>
   <div class="mb-3">
     <label for="exampleInputText1" class="form-label">Rua:</label>
-    <input type="text" class="form-control" name="exampleInputNome1" aria-describedby="emailHelp"
-      [(ngModel)]="endereco.rua">
+    <input type="text" class="form-control" formControlName="rua" placeholder="Rua" name="exampleInputNome1" aria-describedby="emailHelp" [(ngModel)]="endereco.rua">
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">NumCasa:</label>
-    <input type="text" class="form-control" name="exampleInputTelefone1" [(ngModel)]="endereco.numCasa">
+    <label for="exampleInputPassword1" class="form-label">Bairro:</label>
+    <input type="text" class="form-control" formControlName="bairro" placeholder="Bairro" name="exampleInputTelefone2" [(ngModel)]="endereco.bairro">
   </div>
-  <!-- <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">CPF</label>
-    <input type="text" class="form-control" name="exampleCPF1" [(ngModel)]="usuario.cpf">
-  </div> -->
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Cidade:</label>
+    <input type="text" class="form-control" formControlName="cidade" placeholder="Cidade" name="exampleInputTelefone3" [(ngModel)]="endereco.cidade">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">UF:</label>
+    <input type="text" class="form-control" formControlName="uf" placeholder="UF" name="exampleInputTelefone4" [(ngModel)]="endereco.uf">
+  </div>
 
-
-  <!-- criar componenet modal de enderecos lista -->
   <button type="submit" class="btn btn-primary">Salvar</button>
 </form>

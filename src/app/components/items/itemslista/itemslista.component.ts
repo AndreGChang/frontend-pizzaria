@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { OutletContext } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/model/item';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -26,7 +27,7 @@ export class ItemslistaComponent {
   termoBusca:string = "";
   modalRef!: NgbModalRef;
 
-  constructor(){
+  constructor(private toastSvc: ToastrService){
     this.listAll();
   }
 
@@ -61,6 +62,11 @@ export class ItemslistaComponent {
     this.itemService.deletar(item.id).subscribe({
       next: item =>{
         this.listAll();
+        this.toastSvc.warning(`${item.nome} salvo com sucesso`,"PizzariaTOP",{
+          closeButton:true,
+          progressBar: true,
+          tapToDismiss:true
+        });
       },
       error: erro =>{
         alert("nao e possivel deletar item associado a outrs registros");
@@ -77,8 +83,8 @@ export class ItemslistaComponent {
     if(this.termoBusca.length > 2){
       this.listaFiltrada = [];
       for(let i =0;i < this.lista.length; i++){
-        for(let j =0; j < this.lista[i].sabores.length;i++){
-          if(this.lista[i].sabores[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
+        for(let j =0; j < this.lista[i].nome.length;j++){
+          if(this.lista[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
             this.listaFiltrada.push(this.lista[i]);
           }
         }

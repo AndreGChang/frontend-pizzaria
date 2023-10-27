@@ -6,6 +6,7 @@ import { PessoaslistaComponent } from './components/pessoas/pessoaslista/pessoas
 import { PedidoslistaComponent } from './components/pedidos/pedidoslista/pedidoslista.component';
 import { ItemslistaComponent } from './components/items/itemslista/itemslista.component';
 import { SaboreslistaComponent } from './components/sabores/saboreslista/saboreslista.component';
+import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -15,7 +16,8 @@ const routes: Routes = [
       {path:'pessoas', component:PessoaslistaComponent},
       {path:'pedidos', component:PedidoslistaComponent},
       {path:'itens', component:ItemslistaComponent},
-      {path:'sabores', component:SaboreslistaComponent}
+      {path:'sabores', component:SaboreslistaComponent},
+      {path:'finalizar', component:FinalizarComponent}
     ]
   }
 ];

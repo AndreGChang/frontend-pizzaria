@@ -9,4 +9,6 @@ export class Pedido {
   item!: Item[];
   usuario!: Usuario;
   valorTotal!: number;
+  dataHora!: Date;
+  status!: string;
 }

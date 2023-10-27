@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -23,7 +24,7 @@ export class PessoaslistaComponent {
   usuarioService = inject(UsuarioService);
   termoBusca: string = "";
 
-  constructor() {
+  constructor(private toastSvc: ToastrService) {
     this.listAll();
   }
 
@@ -56,6 +57,11 @@ export class PessoaslistaComponent {
     this.usuarioService.deletar(usuario.id).subscribe(
       () =>{
         this.listAll();
+        this.toastSvc.warning(`Endereco deletado`, "PizzariaTOP", {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true
+        });
       }
     )
   }
@@ -63,7 +69,6 @@ export class PessoaslistaComponent {
   addOuEditarPessoa(usuario: Usuario) {
     this.listAll();
     this.modalService.dismissAll();
-
   }
 
   filtrar() {

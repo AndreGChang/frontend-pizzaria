@@ -66,7 +66,6 @@ export class PedidosdetailsComponent {
 
   editarEndereco(modal: any, pedido: Pedido, indice: number) {
     this.pedidoSelecionadoParaEdicao = Object.assign({}, pedido);
-    this.itemSelecionadoParaEdicao = Object.assign({}, pedido.item[indice])
     this.indiceSelecionadoParaEdicao = indice;
     this.modalRef = this.modalService.open(modal, { size: "lg" });
   }
@@ -108,7 +107,10 @@ export class PedidosdetailsComponent {
     this.modalRef = this.modalService.open(modal, { size: "lg" });
   }
 
-  verItens(modal: any) {
+  verItens(modal: any, item: Item, indice:number) {
+    this.itemSelecionadoParaEdicao = Object.assign({}, item);
+    this.indiceSelecionadoParaEdicao = indice;
+    console.log(this.itemSelecionadoParaEdicao);
     this.modalRef = this.modalService.open(modal, { size: "lg" })
   }
 

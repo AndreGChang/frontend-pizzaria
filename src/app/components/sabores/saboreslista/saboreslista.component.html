@@ -1,6 +1,12 @@
-<p>saboreslista works!</p>
+
 <div class="container">
   <h3 class="alert alert-primary">Listagem de sabores!</h3>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Buscar por nome</span>
+    <input type="text" class="form-control" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-default" [(ngModel)]="termoBusca" (ngModelChange)="filtrar()">
+
+  </div>
 
   <td> <button class="btn btn-primary" (click)="adicionar(modal1)">Adicionar</button> </td>
   <div class="row">

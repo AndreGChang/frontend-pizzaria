@@ -12,6 +12,10 @@ export class EnderecoService {
 
   constructor() { }
 
+  getCepData(cep: string) {
+    return this.http.get(`https://viacep.com.br/ws/${cep}/json/`);
+  }
+
   list(): Observable<Endereco[]> {
     return this.http.get<Endereco[]>(this.API);
   }
@@ -24,7 +28,6 @@ export class EnderecoService {
           throw error;
         })
       );
-
   }
 
   save(endereco: Endereco): Observable<Endereco> {

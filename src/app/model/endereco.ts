@@ -3,7 +3,10 @@ import { Usuario } from "./usuario";
 export class Endereco {
 
   id!: number;
+  cep!: string;
   rua!: string;
-  numCasa!: number;
+  bairro!: string;
+  cidade!: string;
+  uf!: string;
   usuario!: Usuario;
 }

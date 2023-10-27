@@ -3,6 +3,7 @@ import { Observable, catchError } from 'rxjs';
 import { Pedido } from '../model/pedido';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,10 @@ export class PedidoService {
 
   listAll(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.API);
+  }
+
+  listAllAtivos(): Observable<Pedido[]>{
+    return this.http.get<Pedido[]>(`${this.API}/status`);
   }
 
   edit(pedido: Pedido): Observable<Pedido> {
@@ -35,20 +40,8 @@ export class PedidoService {
     return this.http.delete<string>(`${this.API}/deletar/${id}`);
   }
 
-  // verify(pedido:Pedido){
-  //   if(pedido.id){
-  //       this.edit(pedido);
-  //   }else{
-  //     this.save(pedido);
-  //   }
-  // }
-
-
-
   verify(pedido: Pedido): Observable<Pedido> {
     if (pedido.id) {
-      console.log('a ');
-      console.log(pedido);
       return this.http.put<Pedido>(`${this.API}/editar/${pedido.id}`, pedido)
         .pipe(
           catchError(error => {
@@ -57,11 +50,20 @@ export class PedidoService {
           })
         );
     } else {
-
-      console.log('b ');
-      console.log(pedido);
       return this.http.post<Pedido>(this.API, pedido);
     }
 
   }
+
+  finalizar(pedido: Pedido): Observable<Pedido>{
+      return this.http.put<Pedido>(`${this.API}/finalizar/${pedido.id}`,pedido).pipe(
+        catchError(error =>{
+          console.log(error);
+          throw error;
+        })
+      );
+
+  }
+
+
 }

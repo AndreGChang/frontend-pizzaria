@@ -70,6 +70,23 @@ export class SaboreslistaComponent {
     this.modalService.dismissAll();
   }
 
+  filtrar() {
+    if(this.termoBusca.length > 2){
+      this.listaFiltrada = [];
+      for(let i =0;i < this.lista.length; i++){
+        for(let j =0; j < this.lista[i].nome.length;i++){
+          if(this.lista[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
+            this.listaFiltrada.push(this.lista[i]);
+          }
+        }
+
+      }
+    }else{
+      this.listaFiltrada = this.lista;
+    }
+  }
+
+
   lancamento(sabores: Sabores){
     this.retorno.emit(sabores);
   }

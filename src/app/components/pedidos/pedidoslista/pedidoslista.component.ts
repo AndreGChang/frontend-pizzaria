@@ -62,6 +62,12 @@ export class PedidoslistaComponent implements OnInit{
     this.modalService.open(modal, {size:"lg"});
   }
 
+  verFinalizar(modal : any, pedido : Pedido, indice : number){
+    this.pedidoSelecionadoParaEdicao = Object.assign({}, pedido);
+    // this.indiceSelecionadoParaEdicao = indice;
+    this.modalService.open(modal, {size:"lg"});
+  }
+
   deletar(pedido: Pedido){
     this.pedidoService.deletar(pedido.id).subscribe(
       () =>{
@@ -79,7 +85,7 @@ export class PedidoslistaComponent implements OnInit{
     if(this.termoBusca.length > 2){
       this.listaFiltrada = [];
       for(let i =0;i < this.lista.length; i++){
-        if(this.lista[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
+        if(this.lista[i].usuario?.nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
           this.listaFiltrada.push(this.lista[i]);
         }
       }
