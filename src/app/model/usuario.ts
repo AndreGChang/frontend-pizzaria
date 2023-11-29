@@ -7,5 +7,7 @@ export class Usuario {
   telefone!: string;
   cpf!: string;
   enderecos!: Endereco[];
-  login!: Login;
+  username!: string;
+  role!: string;
+  token!: string;
 }

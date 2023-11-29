@@ -21,8 +21,6 @@ export class PessoasdetailsComponent implements OnInit {
   modalService = inject(NgbModal);
   modalRef!: NgbModalRef;
 
-
-
   enderecoSelecionadoParaEdicao: Endereco = new Endereco();
   indiciSelecionadoParaEdicao!: number;
 
@@ -36,7 +34,7 @@ export class PessoasdetailsComponent implements OnInit {
       telefone: ['', [Validators.required, this.telefoneValidator()]],
       nome: ['', [Validators.required]]
     });
-  }
+  };
 
   cpfValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -44,7 +42,7 @@ export class PessoasdetailsComponent implements OnInit {
       const valid = cpfRegex.test(control.value);
       return valid ? null : { 'cpfInvalid': { value: control.value } };
     };
-  }
+  };
 
   telefoneValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -52,7 +50,7 @@ export class PessoasdetailsComponent implements OnInit {
       const valid = telefoneRegex.test(control.value);
       return valid ? null : { 'telefoneInvalid': { value: control.value } };
     }
-  }
+  };
 
   salvar() {
     this.usuarioService.verify(this.usuario).subscribe({
@@ -73,8 +71,7 @@ export class PessoasdetailsComponent implements OnInit {
         console.log(erro);
       }
     });
-  }
-
+  };
 
   adicionarEndereco(modal: any) {
     this.enderecoSelecionadoParaEdicao = new Endereco();

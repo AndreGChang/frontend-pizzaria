@@ -8,7 +8,9 @@ import { PedidoService } from 'src/app/services/pedido.service';
   templateUrl: './pedidoslista.component.html',
   styleUrls: ['./pedidoslista.component.scss']
 })
-export class PedidoslistaComponent implements OnInit{
+export class PedidoslistaComponent {
+  component: any;
+  [x: string]: any;
 
   @Input() modoLancamento = false;
 
@@ -26,10 +28,6 @@ export class PedidoslistaComponent implements OnInit{
 
   constructor(){
     this.listAll();
-  }
-
-  ngOnInit(): void {
-
   }
 
   listAll() {

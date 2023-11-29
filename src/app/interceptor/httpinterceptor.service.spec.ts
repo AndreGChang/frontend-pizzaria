@@ -1,11 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
 
-import { PedidoService } from './pedido.service';
+import { HttpinterceptorService } from './httpinterceptor.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('PedidoService', () => {
-  let service: PedidoService;
+describe('HttpinterceptorService', () => {
+  let service: HttpinterceptorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('PedidoService', () => {
         CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA
       ]
     });
-    service = TestBed.inject(PedidoService);
+    service = TestBed.inject(HttpinterceptorService);
   });
 
   it('should be created', () => {

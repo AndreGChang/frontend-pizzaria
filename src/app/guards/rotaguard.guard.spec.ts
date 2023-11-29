@@ -1,11 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
+import { CanActivateFn } from '@angular/router';
 
-import { PedidoService } from './pedido.service';
+import { rotaguardGuard } from './rotaguard.guard';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('PedidoService', () => {
-  let service: PedidoService;
+describe('rotaguardGuard', () => {
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+      TestBed.runInInjectionContext(() => rotaguardGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,10 +16,9 @@ describe('PedidoService', () => {
         CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA
       ]
     });
-    service = TestBed.inject(PedidoService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(executeGuard).toBeTruthy();
   });
 });

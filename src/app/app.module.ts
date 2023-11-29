@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrModule } from 'ngx-toastr';
 import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
+import { httpInterceptorProviders } from './interceptor/httpinterceptor.service';
 
 
 @NgModule({
@@ -44,8 +45,6 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     SaboresdetailsComponent,
     FinalizarComponent,
     FooterComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -61,11 +60,10 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule
-
-
-
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

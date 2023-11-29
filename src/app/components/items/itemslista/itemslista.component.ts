@@ -79,18 +79,28 @@ export class ItemslistaComponent {
     this.modalRef.dismiss();
   }
 
-  filtrar() {
-    if(this.termoBusca.length > 2){
-      this.listaFiltrada = [];
-      for(let i =0;i < this.lista.length; i++){
-        for(let j =0; j < this.lista[i].nome.length;j++){
-          if(this.lista[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
-            this.listaFiltrada.push(this.lista[i]);
-          }
-        }
+  // filtrar() {
+  //   if(this.termoBusca.length > 2){
+  //     this.listaFiltrada = [];
+  //     for(let i =0;i < this.lista.length; i++){
+  //       for(let j =0; j < this.lista[i].nome.length;j++){
+  //         if(this.lista[i].nome.toLowerCase().indexOf(this.termoBusca.toLowerCase()) >= 0){ //VERIFICANDO SE EXISTE O TRECHO DO TERMOBUSCA DENRO DO NOME DO OBJETO USUARIO
+  //           this.listaFiltrada.push(this.lista[i]);
+  //         }
+  //       }
 
-      }
-    }else{
+  //     }
+  //   }else{
+  //     this.listaFiltrada = this.lista;
+  //   }
+  // }
+
+  filtrar() {
+    if (this.termoBusca.length > 2) {
+      this.listaFiltrada = this.lista.filter(item =>
+        item.nome.toLowerCase().includes(this.termoBusca.toLowerCase())
+      );
+    } else {
       this.listaFiltrada = this.lista;
     }
   }

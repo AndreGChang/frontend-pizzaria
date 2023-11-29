@@ -7,12 +7,13 @@ import { PedidoslistaComponent } from './components/pedidos/pedidoslista/pedidos
 import { ItemslistaComponent } from './components/items/itemslista/itemslista.component';
 import { SaboreslistaComponent } from './components/sabores/saboreslista/saboreslista.component';
 import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
+import { rotaguardGuard } from './guards/rotaguard.guard';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component:LoginComponent},
   {
-    path:'admin', component:IndexComponent,children:[
+    path:'admin', component:IndexComponent,canActivate:[rotaguardGuard],children:[
       {path:'pessoas', component:PessoaslistaComponent},
       {path:'pedidos', component:PedidoslistaComponent},
       {path:'itens', component:ItemslistaComponent},
