@@ -26,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { httpInterceptorProviders } from './interceptor/httpinterceptor.service';
+import { CadastroComponent } from './sistema/cadastro/cadastro.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { httpInterceptorProviders } from './interceptor/httpinterceptor.service'
     SaboresdetailsComponent,
     FinalizarComponent,
     FooterComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,

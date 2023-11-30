@@ -8,6 +8,8 @@ import { ItemslistaComponent } from './components/items/itemslista/itemslista.co
 import { SaboreslistaComponent } from './components/sabores/saboreslista/saboreslista.component';
 import { FinalizarComponent } from './components/pedidos/finalizar/finalizar.component';
 import { rotaguardGuard } from './guards/rotaguard.guard';
+import { CadastrarConta } from './model/cadastrar-conta';
+import { CadastroComponent } from './sistema/cadastro/cadastro.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -18,13 +20,14 @@ const routes: Routes = [
       {path:'pedidos', component:PedidoslistaComponent},
       {path:'itens', component:ItemslistaComponent},
       {path:'sabores', component:SaboreslistaComponent},
-      {path:'finalizar', component:FinalizarComponent}
+      {path:'finalizar', component:FinalizarComponent},
+      {path:'cadastrar-conta', component:CadastroComponent}
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,)],// {useHash: true}
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

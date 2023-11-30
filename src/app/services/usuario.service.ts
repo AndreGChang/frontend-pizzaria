@@ -2,6 +2,7 @@ import { Usuario } from 'src/app/model/usuario';
 import { Observable, catchError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { CadastrarConta } from '../model/cadastrar-conta';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,9 @@ export class UsuarioService {
       console.log(usuario)
       return this.http.post<Usuario>(this.API + "/cadastro", usuario);
     }
+  }
 
+  cadastrar(conta : CadastrarConta): Observable<CadastrarConta>{
+    return this.http.post<CadastrarConta>(`${this.API}/criar-conta`,conta);
   }
 }
